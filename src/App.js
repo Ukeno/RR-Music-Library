@@ -2,6 +2,8 @@ import './App.css';
 import { useEffect, useState } from 'react'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
+import AlbumView from './components/AlbumView'
+import ArtistView from './components/ArtistView'
 
 function App() {
   let [searchTerm, setSearchTerm] = useState('')
