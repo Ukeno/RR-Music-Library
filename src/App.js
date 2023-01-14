@@ -1,7 +1,8 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import { useEffect, Suspense, useState } from 'react'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
+import Spinner from './components/Spinner' // New for spinner
 
 function App() {
   let [searchTerm, setSearchTerm] = useState('')
@@ -28,12 +29,23 @@ function App() {
     e.preventDefault()
     setSearchTerm(term)
   }
+  // New for spinner
+  const renderGallery = () => {
+    if(data){
+      return (
+        <Suspense fallback={<Spinner />}>
+          <Gallery data={data} />
+        </Suspense>
+      )
+    }
+  }
 
   return (
     <div className="App">
       <SearchBar handleSearch={handleSearch} />
       {message}
-      <Gallery data={data} />
+      {/* <Gallery data={data} /> */}
+      {renderGallery()}
     </div>
   );
 }
